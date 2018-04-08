@@ -1,0 +1,5 @@
+.imageclass{
+    background-image: url('./img/img1.jpg');
+    background-position: left;
+    height:700px;
+}

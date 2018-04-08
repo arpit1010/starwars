@@ -1,0 +1,28 @@
+<div class="row pull-right">
+    <button (click)='logout()' class="btn btn-primary">Take me back</button>
+</div>
+<div class="bar">
+    <!-- Create a binding between the searchString model and the text field -->
+    <input  type="text" maxlength="20" [formControl]='searchString' placeholder="Search for the planets" />
+</div>
+<div class="row">
+        <div class="col-xs-12" *ngIf="emptyResults " style="color:white">No Results to display</div>
+        <div class="col-xs-6">
+        <ul class="heroes">
+<li *ngFor="let planet of model.planets" 
+    [class.selected]="planet === selectedPlanet"
+    (click)="onSelect(planet)">
+    <span class="badge">{{planet.id}}</span> <span [ngStyle]='{"font-size":((planet.population/maxpopulation)>0.5?18:12)+"px"}'>{{planet.name}}
+ </span> </li>
+</ul></div>
+
+<div class="col-xs-4 col-xs-offset-2 " style="min-height: 100px;background-color: rgb(231, 216, 226);padding:20px;" *ngIf="selectedPlanet">
+  <h2 style="color:black">{{ selectedPlanet.name | uppercase }}</h2>
+  <li><b>Population</b> :{{selectedPlanet.population}}</li>
+  <li><b>Diameter</b> : {{selectedPlanet.diameter}}</li>
+  <li><b>Climate</b> : {{selectedPlanet.climate}}</li>
+  <li><b>Terrain</b> : {{selectedPlanet.terrain}}</li>
+
+</div>
+</div>
+<router-outlet></router-outlet>
